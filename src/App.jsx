@@ -1,31 +1,29 @@
 import "./App.css";
-import Counter from "./components/Counter";
-import ExponentTwo from "./components/ExponentTwo";
-import ExponentThree from "./components/ExponentThree";
-import ExponentFour from "./components/ExponentFour";
-import ExponentFive from "./components/ExponentFive";
-import ExponentSix from "./components/ExponentSix";
+import { useState } from "react";
+import Counter from "../src/components/Counter";
+import Exponent from "../src/components/Exponent";
 
+const App = () => {
+  const [count, setCount] = useState(0); 
+  const superscript = [2, 3, 4, 5, 6];
 
-function App () {
   return (
     <div className="App">
-      <h2><em>Counter</em></h2>
-  
-      <Counter/>
+      <h2><em> Counter </em></h2>
+      {/* count and setCount as props */}
+      <Counter count={count} setCount={setCount} />
 
       <br />
-      <h2><em>Exponents</em></h2>
-
+      <h2><em> Exponent </em></h2>
       <div className="container">
-        <ExponentTwo />
-        <ExponentThree />
-        <ExponentFour />
-        <ExponentFive />
-        <ExponentSix />
+        {/* Generate Exponent components dynamically */}
+        {superscript.map((num) => (
+          <Exponent key={num} num={num} exponent={count} />
+        ))}
       </div>
     </div>
   );
-}
+};
 
 export default App;
+
